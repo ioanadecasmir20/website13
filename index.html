@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>360 Security Training</title>
+  <meta name="description" content="Vocational training in the UK. First Aid (Level 3 & 2), Emergency First Aid (Level 3), and ACT Awareness & ACT Security through UK Protect." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/favicon.png"/>
+
+  <style>
+    :root{
+      --brand:#0aa7e6;   /* blue from logo */
+      --brand-600:#0693c9;
+      --ink:#2f2f2f;     /* dark grey from logo text */
+      --muted:#5a5f66;
+      --bg:#f7fbff;
+      --card:#ffffff;
+      --ring: rgba(10,167,230,.35);
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+
+    /* Reset / base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+      scroll-behavior:smooth;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%; height:auto; display:block}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{color:var(--brand-600)}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:#fff; box-shadow:var(--shadow);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .logo{
+      display:flex; gap:12px; align-items:center; font-weight:800; letter-spacing:.3px;
+    }
+    .logo img{width:44px; height:44px}
+    .logo span{font-size:1.1rem}
+    nav ul{list-style:none; display:flex; gap:20px; padding:0; margin:0}
+    nav a{padding:8px 12px; border-radius:12px; font-weight:600; color:var(--ink)}
+    nav a.active, nav a:hover{background:var(--bg); color:#111}
+    .menu-btn{display:none; background:#fff; border:1px solid #e5e7eb; padding:8px 12px; border-radius:12px}
+    @media (max-width:900px){
+      nav ul{display:none; position:absolute; top:64px; left:20px; right:20px; background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:12px; box-shadow:var(--shadow)}
+      nav ul.open{display:flex; flex-direction:column}
+      .menu-btn{display:block}
+    }
+
+    /* Hero */
+    .hero{
+      position:relative; overflow:hidden;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(10,167,230,.18), transparent 60%) , #fff;
+      border-bottom:1px solid #eaf3f9;
+    }
+    .hero-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:64px 0}
+    @media (max-width:900px){ .hero-inner{grid-template-columns:1fr; padding:40px 0} }
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background:var(--bg); border-radius:999px; color:var(--muted); font-size:.9rem; border:1px solid #eaf3f9}
+    .hero h1{font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:16px 0}
+    .lead{font-size:1.125rem; color:#454b52; margin-bottom:24px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 18px; border-radius:14px; border:1px solid transparent; cursor:pointer; font-weight:700;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .btn-primary{ background:var(--brand); color:#fff; box-shadow:0 10px 20px var(--ring) }
+    .btn-primary:hover{ transform:translateY(-1px); background:var(--brand-600) }
+    .btn-ghost{ background:#fff; color:var(--ink); border-color:#e5e7eb }
+    .btn-ghost:hover{ background:var(--bg) }
+
+    .hero-media{
+      position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#eaf3f9; border:1px solid #eaf3f9;
+      aspect-ratio: 4 / 3;
+    }
+    .hero-media img{ width:100%; height:100%; object-fit:cover }
+
+    /* Sections */
+    section{padding:70px 0}
+    section h2{font-size: clamp(1.5rem, 3vw, 2.2rem); margin:0 0 14px}
+    .sub{color:var(--muted); margin-bottom:32px}
+
+    /* Services */
+    .grid{display:grid; gap:20px}
+    .grid-3{grid-template-columns: repeat(3, 1fr)}
+    @media (max-width:1000px){ .grid-3{grid-template-columns:1fr 1fr} }
+    @media (max-width:640px){ .grid-3{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card); border:1px solid #eaf3f9; border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:22px; position:relative; overflow:hidden;
+    }
+    .card .tag{position:absolute; top:14px; right:14px; font-size:.8rem; background:var(--bg); color:var(--muted); padding:4px 10px; border-radius:999px; border:1px solid #eaf3f9}
+
+    .service-visual{height:160px; border-radius:14px; overflow:hidden; margin-bottom:14px; background:#eef7fc; border:1px dashed #d9ebf7; display:grid; place-items:center; color:#8aaec2}
+
+    /* Jobs */
+    .filter{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px}
+    .chip{border:1px solid #d7e7f3; padding:8px 12px; border-radius:999px; background:#fff; cursor:pointer; user-select:none}
+    .chip.active{background:var(--brand); color:#fff; border-color:transparent}
+    .job{display:flex; align-items:flex-start; gap:16px; padding:18px; border:1px solid #eaf3f9; border-radius:16px; background:#fff}
+    .job .bullet{min-width:10px; height:10px; border-radius:50%; background:var(--brand); margin-top:8px; box-shadow:0 0 0 6px var(--ring)}
+    .jobs-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    @media (max-width:900px){ .jobs-grid{grid-template-columns:1fr} }
+
+    /* About */
+    .about{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    @media (max-width:900px){ .about{grid-template-columns:1fr} }
+
+    /* T&C Accordion */
+    .accordion{border:1px solid #eaf3f9; border-radius:16px; background:#fff; overflow:hidden}
+    .acc-item + .acc-item{border-top:1px solid #eaf3f9}
+    .acc-btn{width:100%; text-align:left; background:#fff; border:0; padding:18px 20px; font-weight:700; cursor:pointer}
+    .acc-btn:focus{outline:3px solid var(--ring)}
+    .acc-panel{max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 20px}
+    .acc-panel.open{padding:0 20px 20px 20px}
+
+    /* Contact */
+    .contact{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px
+    }
+    @media (max-width:900px){ .contact{grid-template-columns:1fr} }
+    .contact .card form{
+      display:grid; gap:12px
+    }
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid #d7e7f3; background:#fff; font:inherit
+    }
+    input:focus, textarea:focus{outline:3px solid var(--ring)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    /* Footer */
+    footer{padding:28px 0; border-top:1px solid #eaf3f9; color:var(--muted)}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+
+    /* Utilities */
+    .reveal{opacity:0; transform:translateY(10px); transition: opacity .5s ease, transform .5s ease}
+    .reveal.in{opacity:1; transform:none}
+    .badge{display:inline-flex; gap:6px; align-items:center; background:#e9f6fd; border:1px solid #d3ecfa; color:#0b80b5; padding:6px 10px; border-radius:999px; font-weight:600}
+    .spacer{height:6px}
+    .backtop{
+      position:fixed; right:20px; bottom:20px; z-index:40; display:none;
+      border:0; border-radius:999px; padding:12px 14px; background:var(--brand); color:#fff; box-shadow:var(--shadow); cursor:pointer
+    }
+    .backtop.show{display:block}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo">
+        <img src="images/logo.png" alt="360 Security Training logo" />
+        <span>360 Security Training</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">☰ Menu</button>
+      <nav>
+        <ul id="menu">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#jobs">Jobs</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#terms">Terms</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow"><span>✅</span> Approved vocational training (UK)</span>
+          <h1>First Aid & Security Training with a <span style="color:var(--brand)">360°</span> focus on safety</h1>
+          <p class="lead">We currently provide First Aid qualifications and ACT Awareness. Flexible delivery for organisations and individuals.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#services">Explore services</a>
+            <a class="btn btn-ghost" href="#contact">Book / enquire</a>
+          </div>
+          <div class="spacer"></div>
+          <div class="badge">ACT Awareness via UK Protect</div>
+        </div>
+        <div class="hero-media reveal">
+          <!-- Replace this placeholder with your own hero image: images/hero.jpg -->
+          <img src="images/hero.jpg" alt="People practicing first aid in training session (placeholder)" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>Services</h2>
+        <p class="sub">High-quality training delivered by industry professionals.</p>
+
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <span class="tag">RQF Level 3 & 2</span>
+            <div class="service-visual">
+              <!-- Replace with images/service-first-aid.jpg -->
+              <span>Image placeholder</span>
+            </div>
+            <h3>First Aid</h3>
+            <p>Essential skills for workplaces and public settings. Practical, scenario-based learning for confidence in real incidents.</p>
+            <ul>
+              <li>First Aid at Work (Level 3)</li>
+              <li>First Aid (Level 2)</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Level 3</span>
+            <div class="service-visual">
+              <!-- Replace with images/service-efaw.jpg -->
+              <span>Image placeholder</span>
+            </div>
+            <h3>Emergency First Aid</h3>
+            <p>One-day course focusing on life-saving interventions and immediate response in emergencies.</p>
+            <ul>
+              <li>Emergency First Aid at Work (Level 3)</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">UK Protect</span>
+            <div class="service-visual">
+              <!-- Replace with images/service-act.jpg -->
+              <span>Image placeholder</span>
+            </div>
+            <h3>ACT Awareness &amp; ACT Security</h3>
+            <p>Delivered through <a href="https://www.protectuk.police.uk/" target="_blank" rel="noopener">UK Protect</a>, raising awareness of protective security and counter-terrorism best practice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOBS -->
+    <section id="jobs">
+      <div class="container">
+        <h2>Jobs</h2>
+        <p class="sub">We’re building our team. Current interest areas below — apply if you match the profile.</p>
+
+        <div class="filter" aria-label="Filter roles">
+          <button class="chip active" data-role="all">All</button>
+          <button class="chip" data-role="trainer">First Aid Trainers</button>
+          <button class="chip" data-role="iqa">IQA (Internal Quality Assurers)</button>
+          <button class="chip" data-role="security">Security Staff (Active SIA)</button>
+        </div>
+
+        <div class="jobs-grid">
+          <div class="job reveal" data-role="trainer">
+            <div class="bullet" aria-hidden="true"></div>
+            <div>
+              <h3>First Aid Trainer (Freelance/Part-time)</h3>
+              <p class="muted">Deliver Level 3 &amp; Level 2 First Aid and EFAW. Prior teaching/training experience preferred.</p>
+              <ul>
+                <li>Valid First Aid at Work &amp; assessor/teaching qualification</li>
+                <li>Strong practical demonstration skills</li>
+                <li>Flexible availability</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="job reveal" data-role="iqa">
+            <div class="bullet" aria-hidden="true"></div>
+            <div>
+              <h3>Internal Quality Assurer (IQA)</h3>
+              <p class="muted">Support standardisation, sampling, and feedback across First Aid delivery.</p>
+              <ul>
+                <li>IQA qualification (or working towards)</li>
+                <li>Up-to-date CPD and industry knowledge</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="job reveal" data-role="security">
+            <div class="bullet" aria-hidden="true"></div>
+            <div>
+              <h3>Security Staff</h3>
+              <p class="muted">Operational roles for events and venues. Applicants must hold an <strong>active SIA licence</strong>.</p>
+              <ul>
+                <li>Excellent communication &amp; professionalism</li>
+                <li>Customer-focused approach</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="job reveal" data-role="trainer">
+            <div class="bullet" aria-hidden="true"></div>
+            <div>
+              <h3>Emergency First Aid Trainer</h3>
+              <p class="muted">Lead engaging one-day EFAW courses with practical assessments.</p>
+              <ul>
+                <li>Teaching qualification (AET or equivalent)</li>
+                <li>Recent first aid training delivery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:14px">To express interest, email your CV and availability to <a href="mailto:info@360securitytraining.co.uk">info@360securitytraining.co.uk</a>.</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2>About us</h2>
+        <div class="about">
+          <div class="card reveal">
+            <p>360 Security Training is a UK vocational training provider. Our approach blends hands-on practice with scenario-based learning to ensure real-world confidence. We currently focus on First Aid qualifications and deliver ACT Awareness/A CT Security via UK Protect.</p>
+            <p class="muted">We work with organisations and individuals across sectors; on-site delivery is available.</p>
+          </div>
+          <div class="card reveal">
+            <!-- Replace with images/about.jpg -->
+            <img src="images/about.jpg" alt="Instructor demonstrating first aid (placeholder)" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS -->
+    <section id="terms">
+      <div class="container">
+        <h2>Terms &amp; Conditions</h2>
+        <p class="sub">Plain-English summary. Full policy available on request.</p>
+
+        <div class="accordion">
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false">Bookings, Payments &amp; Cancellations</button>
+            <div class="acc-panel">
+              <p>Course places are confirmed on payment or written purchase order. Cancellations within 7 days of the course start may be charged in full. Delegate substitutions are permitted.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false">Assessment &amp; Certification</button>
+            <div class="acc-panel">
+              <p>Successful learners receive certificates from the relevant awarding organisation (where applicable). Photo ID may be required for registration and exams.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false">Data &amp; Privacy</button>
+            <div class="acc-panel">
+              <p>We process learner data only for training and certification. We do not share personal information beyond what is required by awarding organisations and legal obligations.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false">Health, Safety &amp; Access</button>
+            <div class="acc-panel">
+              <p>Please advise us of any reasonable adjustments needed. Practical elements involve physical activity; learners should dress appropriately and inform us of any concerns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="sub">We’re happy to help with bookings, quotes, or general questions.</p>
+
+        <div class="contact">
+          <div class="card reveal">
+            <form action="mailto:info@360securitytraining.co.uk" method="post" enctype="text/plain">
+              <input type="text" name="name" placeholder="Your name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="tel" name="phone" placeholder="Phone (optional)" />
+              <textarea name="message" rows="5" placeholder="How can we help?" required></textarea>
+              <button class="btn btn-primary" type="submit">Send enquiry</button>
+              <span class="muted">Or email us directly at <a href="mailto:info@360securitytraining.co.uk">info@360securitytraining.co.uk</a></span>
+            </form>
+          </div>
+          <div class="card reveal">
+            <h3>360 Security Training</h3>
+            <p>
+              Basepoint Pine Grove,<br/>
+              Crowborough, TN6 1DH
+            </p>
+            <p><strong>T:</strong> <a href="tel:+441322761078">01322 761078</a><br/>
+               <strong>E:</strong> <a href="mailto:info@360securitytraining.co.uk">info@360securitytraining.co.uk</a></p>
+            <p class="muted">Office hours: Mon–Fri, 09:00–17:00</p>
+            <!-- Replace with images/map.jpg -->
+            <img src="images/map.jpg" alt="Map to Basepoint Pine Grove (placeholder)" loading="lazy" style="border-radius:12px; border:1px solid #eaf3f9; margin-top:8px;">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>&copy; <span id="year"></span> 360 Security Training. All rights reserved.</div>
+      <div><a href="#top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <button class="backtop" id="backtop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => menu.classList.toggle('open'));
+
+    // Active link on scroll
+    const links = [...document.querySelectorAll('nav a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+    const setActive = () => {
+      const y = window.scrollY + 120;
+      let current = links[0];
+      sections.forEach((sec, i) => {
+        if (sec && sec.offsetTop <= y) current = links[i];
+      });
+      links.forEach(a => a.classList.remove('active'));
+      current.classList.add('active');
+    };
+    window.addEventListener('scroll', setActive);
+    setActive();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, {threshold: .14});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Accordion
+    document.querySelectorAll('.acc-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const panel = btn.nextElementSibling;
+        const isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        panel.classList.toggle('open', !isOpen);
+        panel.style.maxHeight = !isOpen ? panel.scrollHeight + 'px' : '0px';
+      });
+    });
+
+    // Jobs filter
+    const chips = document.querySelectorAll('.chip');
+    const jobs = document.querySelectorAll('.job');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const role = chip.dataset.role;
+      jobs.forEach(j => {
+        j.style.display = (role === 'all' || j.dataset.role === role) ? 'flex' : 'none';
+      });
+    }));
+
+    // Back to top
+    const backtop = document.getElementById('backtop');
+    window.addEventListener('scroll', () => {
+      backtop.classList.toggle('show', window.scrollY > 600);
+    });
+    backtop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
